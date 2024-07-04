@@ -28,9 +28,9 @@
         <div class="col-4"></div>
     </div>
     </form>
-    <div class="row">
-        <div class="col">
-            <a href="{{ route('acctg') }}" class="link-dark">Back</a>
+    <div class="row d-flex justify-content-center align-items-center mt-3">
+        <div class="col-auto">
+            <a href="{{ route('acctg') }}" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>

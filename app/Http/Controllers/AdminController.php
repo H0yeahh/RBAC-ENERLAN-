@@ -22,4 +22,31 @@ class AdminController extends Controller
 
         return view('admin.manageUsers')->with(compact('users'));
     }
+
+    public function editUser($id)
+    {
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        return view('admin.editUser', compact('user', 'roles'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $request->validate([
+            'role_id' => 'required|exists:roles,id',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->roles()->sync([$request->input('role_id')]);
+
+        return redirect()->route('usertool')->with('success', 'User role updated successfully.');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('usertool')->with('success', 'User deleted successfully.');
+    }
 }

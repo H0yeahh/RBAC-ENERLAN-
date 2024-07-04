@@ -1,43 +1,68 @@
 @extends('mainLayout')
 
-@section('page-title','Account Login')
+@section('page-title', 'Account Login')
 
 @section('auth-content')
-<div class="container vh-100">
-    <div class="row lh-base">
-        <div class="col-4"></div>
-        <div class="col-4" style="font-size: 1.6rem; background-color: black; color: white;">User Login</div>
-        <div class="col-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-4">&nbsp;</div>
-        <div class="col-4" style="border: 1px solid grey;">
-            <form method="POST" action="{{ route('login') }}" class="form">
-                @csrf
-                <div class="formgroupp">
-                    <label class="auth-labels">Username</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required class="auth-textbox form-control border border-dark">
-                    @error('name')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="formgroup">
-                    <label class="auth-labels">Password</label>
-                    <input type="password" name="password" required class="auth-textbox form-control border border-dark">
-                    @error('password')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="text-center">
-                   <button type="submit" class="btn btn-md btn-primary">Login</button>
-                   <button type="reset" class="btn btn-md btn-danger">Clear</button>
-                </div>
-                <div class="text-center">
-                    Not a user? Register <a href="{{ route('register') }}">Here</a>.
-                </div>
-            </form>
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5 pt-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
+                <form method="POST" action="{{ route('login') }}" class="form">
+                    @csrf
+                    
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3">Username</label>
+                        <input type="text" name="name" value="{{ old('name') }}" required class="form-control form-control-lg" placeholder="Enter your username" />
+                    </div>
+
+                    
+                    <div class="form-outline mb-3">
+                        <label class="form-label" for="form3Example4">Password</label>
+                        <input type="password" name="password" required class="form-control form-control-lg" placeholder="Enter password" />
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        
+                        <div class="form-check mb-0">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <label class="form-check-label" for="form2Example3">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#!" class="text-body">Forgot password?</a>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{ route('register') }}" class="link-danger">Register</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-4"></div>
     </div>
-</div>
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+       
+        <div class="text-white mb-3 mb-md-0">
+            Copyright © 2024. All rights reserved.
+        </div>
+ 
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+</section>
 @endsection

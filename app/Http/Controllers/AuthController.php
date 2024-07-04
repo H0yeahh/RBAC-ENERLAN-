@@ -24,15 +24,15 @@ class AuthController extends Controller
 
         // $email = 'user@domain.com';
 
-        if($request->generate_email || ($request->email && $request->generate_email)){
-             $email = fake()->unique()->safeEmail();
+        if ($request->generate_email || ($request->email && $request->generate_email)) {
+            $email = fake()->unique()->safeEmail();
         } else {
             $email = $request->email;
         }
 
         $request->validate([
-            'firstname'=> 'required|string|max:255',
-            'lastname'=> 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'name' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -69,10 +69,9 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // if (Auth::check())
-                //   return redirect()->route('dash');
+            //   return redirect()->route('dash');
             // else
-                  return redirect()->intended(route('home'));
-
+            return redirect()->intended(route('home'));
         }
 
         return back()->withErrors([
